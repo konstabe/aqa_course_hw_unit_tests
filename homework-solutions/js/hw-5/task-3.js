@@ -4,16 +4,19 @@
  * Ожидаемый результат для `hello`: "hello contains 2 vowels and 3 consonants".
  */
 const word = 'hello';
-const vowels = 'aeiouyAEIOUY';
+const vowels = 'aeiouy';
+const consonants = 'bcdfghjklmnpqrstvwxz';
 
 let vowelsCount = 0;
 let consonantsCount = 0;
 let vowelsAndConsonantsResult = '';
 
 for (let i = 0; i < word.length; i++) {
-  if (vowels.includes(word[i])) {
+  const currentWord = word[i].toLowerCase();
+  if (vowels.includes(currentWord)) {
     vowelsCount++;
-  } else {
+  } 
+  if (consonants.includes(currentWord)) {
     consonantsCount++;
   }
 }
