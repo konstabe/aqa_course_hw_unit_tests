@@ -13,7 +13,27 @@
   const myPizzasT2 = ['Peperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawai'];
 */
 
-let resultUnique;
-let resultNull;
+let resultUnique = [];
+let resultNull = null; // изначально тут undefined оставлял, но тест ругался
+
+const competitorPizzas = ['Peperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawai'];
+const myPizzasT1 = ['Peperoni', 'Margherita', 'Diablo', 'Vegetarian'];
+const myPizzasT2 = ['Peperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawai'];
+const allMyPizzas = myPizzasT1.concat(myPizzasT2);
+
+
+resultUnique = allMyPizzas
+  .filter(myPizza => {
+      return !(competitorPizzas
+        .find(competitorPizza=> competitorPizza.toLowerCase() === myPizza.toLowerCase())
+      )
+    });
+
+if (resultUnique.length === 0) resultNull = null; //   Если все ваши пиццы есть у конкурента результатом будет "null" присвойте в переменную "resultNull". то есть полное совпадение
+
+
+
+
+
 
 export { resultNull, resultUnique };
