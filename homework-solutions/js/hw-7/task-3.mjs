@@ -9,7 +9,16 @@
 */
 
 function digitalRoot(number) {
-  // Ваш код
+  if (typeof number !== 'number') return NaN;
+
+  const str = String(number);
+  const numbers = str.split("").map(Number);
+
+  const sum = numbers.reduce((prev, current) => prev + current);
+
+  if (sum <= 9) return sum;
+
+  return digitalRoot(sum);
 }
 
 export { digitalRoot };
