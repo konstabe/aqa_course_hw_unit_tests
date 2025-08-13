@@ -17,7 +17,7 @@ function mergeArrays() {
 function devideBy(sentence) {
   // Ваш код
   const updatedSentence = sentence.toLowerCase();
-  const wordsArray = updatedSentence.split(' ').filter(word => word !== '');
+  const wordsArray = updatedSentence.split(' ').filter(word => word);
   
   const updatedWordsArray = wordsArray.map((word, index) => index === 0 ? word : word[0].toUpperCase() + word.slice(1));
   return updatedWordsArray.join('_');

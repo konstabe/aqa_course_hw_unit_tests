@@ -21,7 +21,7 @@ function isPalindrom(word) {
 function findLongestWords(sentence) {
   if (typeof sentence !== 'string') return [];
 
-  const wordsArray = sentence.split(' ').filter(word => word !== '');
+  const wordsArray = sentence.split(' ').filter(word => word);
   const maxLength = Math.max(...wordsArray.map(word => word.length));
   return wordsArray.filter(word => word.length === maxLength);
 }
