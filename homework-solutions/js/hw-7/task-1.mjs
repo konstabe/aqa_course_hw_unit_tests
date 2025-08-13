@@ -6,7 +6,7 @@
   - Решить с использованием Spread operator
 */
 function mergeArrays() {
-  // Ваш код
+  return [...arguments].flat();
 }
 /*
   2. Devide by _
@@ -16,6 +16,11 @@ function mergeArrays() {
   */
 function devideBy(sentence) {
   // Ваш код
+  const updatedSentence = sentence.toLowerCase();
+  const wordsArray = updatedSentence.split(' ').filter(word => word);
+  
+  const updatedWordsArray = wordsArray.map((word, index) => index === 0 ? word : word[0].toUpperCase() + word.slice(1));
+  return updatedWordsArray.join('_');
 }
 /*
   3. Фибаначчи
@@ -26,7 +31,18 @@ function devideBy(sentence) {
     - Например fibonacci(8) //21
   */
 function fibonacci(n) {
-  // Ваш код
+  if (n <= 0) return 0;
+  if (n === 1) return 1;
+
+  let prev = 0, curr = 1;
+
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
+  }
+
+  return curr;
 }
 
 export { mergeArrays, fibonacci, devideBy };
