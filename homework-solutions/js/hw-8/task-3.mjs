@@ -7,7 +7,10 @@
 */
 
 function findMissingNumber(numbers) {
-  // Ваш код
+  sortedNumbers = [...numbers].sort ((a, b) => a - b);
+
+  const expectedArray = Array.from({length: 99}, (_, i) => i + 1);
+  return expectedArray.find((number, index) => number !== sortedNumbers[index]);
 }
 
 export { findMissingNumber };
