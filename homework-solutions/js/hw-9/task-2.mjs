@@ -13,24 +13,35 @@ const characters = [
   { name: 'Jack', age: 49 },
 ];
 
-function addCharacter(character) {
+function addCharacter(object) {
   // Ваш код
+  const {name, age} = object;
+  if (!name || !age) throw new Error('Incorrect type of object');
+
+  characters.push(object);
+  return characters;
 }
 
 function getCharacter(name) {
-  // Ваш код
+  return characters.reduce((result, character) => character.name === name ? result = character : result, undefined);
 }
 
 function getCharactersByAge(minAge) {
-  // Ваш код
+  if (typeof minAge !== "number") throw new Error('Incorrect age');
+  return characters.filter(character => character.age >= minAge);
 }
 
 function updateCharacter(name, newCharacter) {
   // Ваш код
+  return Object.assign(getCharacter(name), newCharacter);
 }
 
 function removeCharacter(name) {
   // Ваш код
+  const deleteIndex = characters.reduce((result, character, index)=> character.name === name ? result = index : result, undefined);
+  if (!deleteIndex) throw new Error('Character is not found');
+  
+  characters.splice(deleteIndex,1);
 }
 
 export { characters, addCharacter, updateCharacter, getCharacter, getCharactersByAge, removeCharacter };
