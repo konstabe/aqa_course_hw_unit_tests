@@ -8,6 +8,7 @@
 let qa = {
   name: "Konstantin",
   age: 28,
+  salary: 1000,
   getInfo: function (greetingsWord) {
     return `${greetingsWord}, my name is ${this.name}, I'm ${this.age} and my salary is ${this.salary}`;
   }
@@ -23,7 +24,8 @@ let qa = {
 
 let anotherQa = {
   name: "Oleg",
-  age: 49
+  age: 49,
+  salary: 1100
 };
 
 // Используйте bind с greetingWord "Hello"

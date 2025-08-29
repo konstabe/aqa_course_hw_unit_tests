@@ -23,7 +23,7 @@ function uniqueRandomGenerator(n) {
     // Ваш код
   let arr = Array.from({length: n}, (_, i) => i + 1);
   return () => {
-    const randomValue = getRandomArbitrary(Math.min(arr), Math.max(arr));
+    const randomValue = Math.round(getRandomArbitrary(Math.min(...arr), Math.max(...arr)));
     const [deletedValue] = arr.splice(arr.indexOf(randomValue), 1);
 
     return deletedValue ? deletedValue : 'All numbers were received';
