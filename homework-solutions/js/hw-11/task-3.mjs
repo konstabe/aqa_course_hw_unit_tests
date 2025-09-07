@@ -26,18 +26,16 @@ class Employee {
     && value.length > 0;
   }
 
-  validateValue(value, validator, errMsg){
-    const isValid = validator(value);
-    if (!isValid) throw new Error(errMsg);
-
-    return isValid;
+  validateValue(value, validator){
+    return validator(value);
   }
 
   get firstName(){
     return this._firstName;
   }
   set firstName(value){
-    this.validateValue(value, this.isNameValid, `FirstName is not valid`);
+    const validationResult = this.validateValue(value, this.isNameValid);
+    if (!validationResult) throw new Error(`FirstName is not valid`);
     this._firstName = value
   }
 
@@ -45,7 +43,8 @@ class Employee {
     return this._lastName;
   }
   set lastName(value){
-    this.validateValue(value, this.isNameValid, `LastName is not valid`);
+    const validationResult = this.validateValue(value, this.isNameValid);
+    if (!validationResult) throw new Error(`LastName is not valid`);
     this._lastName = value
   }
 
@@ -53,7 +52,8 @@ class Employee {
     return this.#salary;
   }
   set salary(value){
-    this.validateValue(value, this.isSalaryValid, `Salary is not valid`);
+    const validationResult = this.validateValue(value, this.isSalaryValid);
+    if (!validationResult) throw new Error(`Salary is not valid`);
     this.#salary = value;
   }
 
@@ -74,7 +74,9 @@ class Developer extends Employee {
   }
 
   addProgrammingLanguage(value){
-    this.validateValue(value, this.isToolValid, `Programm lang is not valid`);
+    const validationResult = this.validateValue(value, this.isToolValid);
+    if (!validationResult) throw new Error(`Programm lang is not valid`);
+
     this.programmingLanguages.push(value);
   }
 }
@@ -113,7 +115,8 @@ class Designer extends Employee {
   }
 
   addDesignTool(tool){
-    this.validateValue(tool, this.isToolValid, `Design tool is not valid`);
+    const validationResult = this.validateValue(tool, this.isToolValid);
+    if (!validationResult) throw new Error(`Design tool is not valid`);
     this.designTools.push(tool);
   }
 }

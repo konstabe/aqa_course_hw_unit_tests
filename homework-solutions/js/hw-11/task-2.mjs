@@ -28,18 +28,17 @@ class Employee {
       && value < 10000;
   }
 
-  validateValue(value, validator, errMsg){
-    const isValid = validator(value);
-    if (!isValid) throw new Error(errMsg);
-
-    return isValid;
+  validateValue(value, validator){
+    return validator(value);
   }
 
   get firstName(){
     return this._firstName;
   }
   set firstName(value){
-    this.validateValue(value, this.#isNameValid, `FirstName is not valid`);
+    const validationResult = this.validateValue(value, this.#isNameValid);
+    if (!validationResult) throw new Error(`FirstName is not valid`);
+
     this._firstName = value
   }
 
@@ -47,7 +46,9 @@ class Employee {
     return this._lastName;
   }
   set lastName(value){
-    this.validateValue(value, this.#isNameValid, `LastName is not valid`);
+    const validationResult = this.validateValue(value, this.#isNameValid);
+    if (!validationResult) throw new Error(`LastName is not valid`);
+
     this._lastName = value
   }
 
@@ -55,7 +56,9 @@ class Employee {
     return this._profession;
   }
   set profession(value){
-    this.validateValue(value, this.#isProfessionValid, `Profession is not valid`);
+    const validationResult = this.validateValue(value, this.#isProfessionValid);
+    if (!validationResult) throw new Error(`Profession is not valid`);
+
     this._profession = value
   }
 
@@ -63,7 +66,9 @@ class Employee {
     return this.#salary;
   }
   set salary(value){
-    this.validateValue(value, this.#isSalaryValid, `Salary is not valid`);
+    const validationResult = this.validateValue(value, this.#isSalaryValid);
+    if (!validationResult) throw new Error(`Salary is not valid`);
+
     this.#salary = value;
   }
 
