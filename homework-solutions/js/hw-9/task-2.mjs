@@ -16,30 +16,35 @@ const characters = [
 function addCharacter(object) {
   // Ваш код
   const {name, age} = object;
-  if (!name || !age) throw new Error('Incorrect type of object');
+  if (!name || !age || typeof name !== "string" || typeof age !== "number") throw new Error('Incorrect type of objects values');
 
   characters.push(object);
   return characters;
 }
 
 function getCharacter(name) {
-  return characters.reduce((result, character) => character.name === name ? result = character : result, undefined);
+  return characters.find((character) => character.name === name);
 }
 
 function getCharactersByAge(minAge) {
-  if (typeof minAge !== "number") throw new Error('Incorrect age');
+  if (typeof minAge !== "number") throw new Error('Incorrect type of age');
   return characters.filter(character => character.age >= minAge);
 }
 
 function updateCharacter(name, newCharacter) {
   // Ваш код
-  return Object.assign(getCharacter(name), newCharacter);
+  const selectedCharacter = getCharacter(name);
+  if (!selectedCharacter) throw new Error('The character is not found');
+
+  if (typeof newCharacter?.name !== "string" || typeof newCharacter?.age !== "number") throw new Error("Incorrect type of new character");
+
+  return Object.assign(selectedCharacter, newCharacter);
 }
 
 function removeCharacter(name) {
   // Ваш код
-  const deleteIndex = characters.reduce((result, character, index)=> character.name === name ? result = index : result, undefined);
-  if (!deleteIndex) throw new Error('Character is not found');
+  const deleteIndex = characters.findIndex((character)=> character.name === name);
+  if (deleteIndex === -1) throw new Error('Character is not found');
   
   characters.splice(deleteIndex,1);
 }
