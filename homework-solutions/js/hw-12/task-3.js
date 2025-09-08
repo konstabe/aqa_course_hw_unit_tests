@@ -55,6 +55,6 @@ async function task3(){
             console.log("Albums: ", user.albums,"\n");
         });
     } catch(e){
-        console.log(e);
+        console.error(e);
     }
 }

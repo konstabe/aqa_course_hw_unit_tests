@@ -8,22 +8,22 @@
 
 
 async function createTodo (body) {
-    let respObj;
-    
     try{
         const response = await fetch("https://jsonplaceholder.typicode.com/todos", {
-            method:"POST",
-            body: body
+            method: "POST",
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(body)
         });
         if (response.status !== 201) throw new Error(`Ошибка. Статус ответа ${response.status}`);
 
-        respObj = await response.json();
+        const respObj = await response.json();
         if (respObj?.id !== 201) throw new Error(`Ошибка. Id ответа ${respObj?.id}`);
+
+        return respObj;
     } catch(e){
-        console.log(e);
+        console.error(e);
         console.log(`Работа функции завершена`);
-    }
-    finally{
-        return respObj
     }
 }
