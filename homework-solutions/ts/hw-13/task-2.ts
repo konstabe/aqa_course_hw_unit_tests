@@ -9,28 +9,19 @@
 
 function validatePassword (password: string): boolean {
     // Пароль должен быть не менее 8 символов.
-    if (password.length >= 8){
+    const validateLength = (password: string) => password.length >= 8;
+    const validateSpace = (password: string) => password.split(" ").length > 0;
+    const validateNumber = (password: string) => password.split("").some(char => char >= "0" && char <= "1");
+    const validateUpperCase = (password: string) => /[A-Z]/.test(password);
+    const validateLowerCase = (password: string) => /[a-z]/.test(password);
+ 
+    const validators = [
+        validateLength, validateSpace, 
+        validateNumber, validateLowerCase,
+        validateUpperCase
+    ] as const;
 
-        // Пароль не должен состоять из одних пробелов
-        if (password.split(" ").length > 0){
-            
-            // Пароль должен содержать хотя бы одну цифру
-            if (password.split("").some(char => char >= "0" && char <= "1")){
-
-                // Пароль должен содержать хотя бы одну заглавную букву
-                if (/[A-Z]/.test(password)) {
-
-                    // Пароль должен содержать хотя бы одну букву в нижнем регистре.
-                    if (/[a-z]/.test(password)) {
-
-                        return true; // ура победа
-                    }
-                }
-            }
-        }
-    }
-
-    return false
+    return validators.every((callback) => callback(password) === true);
 }
 
 validatePassword("asd")
