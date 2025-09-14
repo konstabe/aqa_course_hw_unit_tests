@@ -5,10 +5,11 @@
 //    Пример:
 //    map([1,2,3,4,5], callback) => [0,2,6,12,20]
 
-type Callback<T> = (value: T, index: number, arr: Array<T>) => T | undefined;
 
-function fakeMap<T>(array: Array<T>, callBack: Callback<T>): Array<any>{
-    const newArray = [];
+type Callback<T, U> = (value: T, index: number, arr: Array<T>) => U;
+
+function fakeMap<T, U>(array: Array<T>, callBack: Callback<T, U>): Array<U>{
+    const newArray = new Array<U>;
 
     for (let i = 0; i < array.length; i++) {
         newArray[i] = callBack(array[i], i, array);
