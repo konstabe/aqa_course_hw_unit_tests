@@ -6,7 +6,7 @@ type Employee = {
     salary: number
 }
 
-function getAvgSalary<T extends Employee[]>(...args:T){
+function getAvgSalary<T extends Employee>(...args:T[]){
     const array = [...args];
 
     const result = array.reduce((sum, arg) => sum + arg.salary, 0) / array.length;
