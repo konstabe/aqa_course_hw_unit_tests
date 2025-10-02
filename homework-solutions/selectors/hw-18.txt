@@ -1,0 +1,19 @@
+//submit
+
+1. [id='submit'] или //*[@id='submit]
+
+2. .txt или //*[@class='txt']
+
+3. .txt:first-of-type или (//*[@class='txt'])[1]
+
+4. button[text='Remove comment'] или //button[text()='Remove comment']
+
+5. (//*[@class='one'])[1]
+
+6. [multitag2='on'] или //*[@multitag2='on']
+
+7. div.content > * или //div[@class='content']/*
+
+8. span.content, button.content
+
+9. //*[@id='submit']/ancestor::body
